@@ -152,6 +152,7 @@ SCHEMA = {
                     "original_name": {"type": "string"},
                     "path": {"type": "string"},
                     "type": {"type": "string"},
+                    "module": {"type": "string"},
                     "description": {"type": "string"},
                     "added_at": {"type": "string"},
                     "custom_fields": {"type": "object"}
@@ -291,7 +292,9 @@ def cmd_register_file(args):
         "added_at": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
         "custom_fields": custom_dict
     }
-    
+    if args.module:
+        new_file_record["module"] = args.module
+        
     db["archived_files"].append(new_file_record)
     save_db(db)
     print(f"✓ Registered file '{filename}' in database.")
@@ -356,6 +359,7 @@ def main():
     parser_reg.add_argument("--original-name", help="Original filename before archiving")
     parser_reg.add_argument("--description", help="Brief description of file contents")
     parser_reg.add_argument("--force", action="store_true", help="Overwrite existing registration")
+    parser_reg.add_argument("--module", help="Module or category associated with this file")
     parser_reg.add_argument("--custom", nargs="*", help="Custom fields in key=value format (e.g. module=3 tags=c++)")
     
     # Update textbook command
