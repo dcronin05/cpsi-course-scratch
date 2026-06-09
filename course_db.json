@@ -1,0 +1,322 @@
+{
+  "course": {
+    "code": "CPSI 27603",
+    "name": "Programming II",
+    "section": "991",
+    "term": "Summer 2026",
+    "credit_hours": 3,
+    "description": "Advanced programming concepts including abstract data types, details of object-oriented concepts such as encapsulation and polymorphism in a current object-oriented language as well as an introduction to object oriented analysis and design, software design patterns, and software engineering topics. The laboratory provides ample opportunity to deepen programming skills and practical experiences in current software-development technologies.",
+    "prerequisites": "CPSC 17503 or equivalent",
+    "learning_objectives": [
+      "Research a computing problem and choose solutions from non-computing disciplines. (PI-1b)",
+      "Given a set of requirements, produce a design for a software-based solution. (PI-2a)",
+      "Given a set of requirements, implement a program that meets the requirements. (PI-2b)",
+      "Given user requirements, develop a test plan to evaluate a computer based solution and determine its correctness. (PI-2c)",
+      "Divide a complex computing problem into solvable subcomponents with appropriate data structures and algorithms. (PI-1a)"
+    ]
+  },
+  "instructor": {
+    "name": "Nicholas Seward",
+    "pronouns": "he/him",
+    "email": "njseward@ualr.edu",
+    "office_location": "EIT 575",
+    "office_hours": "Summer Random Hours",
+    "availability_note": "This is summer. I am doing summer things so my scheduled availability is all over the place. Email or discord with some proposed times if you want to meet over zoom."
+  },
+  "materials": {
+    "textbook": {
+      "title": "Programming",
+      "subtitle": "Principles and Practice Using C++",
+      "authors": ["Bjarne Stroustrup"],
+      "isbn": "9780321992789",
+      "required": false,
+      "link": "https://txtbook.dev/NicholasSeward/CppBook"
+    }
+  },
+  "policies": {
+    "grading_scale": {
+      "A": "90-100",
+      "B": "80-89",
+      "C": "70-79",
+      "D": "60-69",
+      "F": "less than 60"
+    },
+    "grading_criteria": [
+      { "category": "Quiz", "weight": 10 },
+      { "category": "Tutorial", "weight": 10 },
+      { "category": "Practice", "weight": 10 },
+      { "category": "Participation", "weight": 10 },
+      { "category": "Project", "weight": 30 },
+      { "category": "Midterm", "weight": 10 },
+      { "category": "Final", "weight": 20 }
+    ],
+    "ai_use": {
+      "instructional_toolchain": "ideation, drafting, formatting, documentation, slides, quizzes, and grading assistance (comments only; all final decisions are human).",
+      "student_guidelines": [
+        "Try the work without AI first",
+        "When stuck, use AI or instructor for hints and guidance",
+        "After finishing, use AI to check your work against requirements"
+      ],
+      "constraints": [
+        "Use of the AI on any work product submitted is acknowledged.",
+        "The work submitted can be reasonable and ethically claimed as your own.",
+        "You are fully responsible for all the content of work submitted."
+      ]
+    },
+    "late_policy": "Due to summer craziness, you will have 1 week after a due date before a -20% penalty is assessed.",
+    "resubmission_policy": "Students may resubmit assignments an unlimited number of times. However, the late submission policy still applies. If a resubmission is made a week after the due date, it will have a -29% penalty."
+  },
+  "schedule": [
+    {
+      "date": "2026-05-26",
+      "type": "event",
+      "title": "FIRST DAY"
+    },
+    {
+      "type": "module",
+      "module_number": 1,
+      "title": "Fundamentals",
+      "start_date": "2026-05-27",
+      "end_date": "2026-05-29",
+      "topics": [
+        "Basic syntax, variables, data types",
+        "Input/output operations, control structures",
+        "Compilation process and IDEs"
+      ]
+    },
+    {
+      "type": "module",
+      "module_number": 2,
+      "title": "Vectors & RNG",
+      "start_date": "2026-06-01",
+      "end_date": "2026-06-03",
+      "topics": [
+        "Introduction to std::vector",
+        "Dynamic resizing and memory layout",
+        "Random number generation and loops"
+      ]
+    },
+    {
+      "type": "module",
+      "module_number": 3,
+      "title": "Functions & File I/O",
+      "start_date": "2026-06-04",
+      "end_date": "2026-06-08",
+      "topics": [
+        "Function declaration, definition, and calls",
+        "Reference vs value parameters, function overloading",
+        "File input/output with fstream"
+      ]
+    },
+    {
+      "date": "2026-06-08",
+      "type": "deadline",
+      "title": "Project 1 Due"
+    },
+    {
+      "type": "module",
+      "module_number": 4,
+      "title": "Testing & Practices",
+      "start_date": "2026-06-09",
+      "end_date": "2026-06-11",
+      "topics": [
+        "Writing unit tests",
+        "Test-driven development and assertions",
+        "Clean coding practices and organization"
+      ]
+    },
+    {
+      "type": "module",
+      "module_number": 5,
+      "title": "Templates & STL",
+      "start_date": "2026-06-12",
+      "end_date": "2026-06-16",
+      "topics": [
+        "Function templates",
+        "STL containers: vector, map, set, unordered_map",
+        "Container iteration and access"
+      ]
+    },
+    {
+      "type": "module",
+      "module_number": 6,
+      "title": "Iterators & Algos",
+      "start_date": "2026-06-17",
+      "end_date": "2026-06-19",
+      "topics": [
+        "Iterator types and STL algorithms",
+        "Lambda functions and functional programming"
+      ]
+    },
+    {
+      "date": "2026-06-19",
+      "type": "deadline",
+      "title": "Project 2 Due"
+    },
+    {
+      "type": "exam",
+      "title": "Midterm Exam",
+      "start_date": "2026-06-22",
+      "end_date": "2026-06-24",
+      "description": "Comprehensive exam covering Modules 1-7 material"
+    },
+    {
+      "type": "module",
+      "module_number": 7,
+      "title": "Classes & Inheritance",
+      "start_date": "2026-06-25",
+      "end_date": "2026-06-29",
+      "topics": [
+        "Class declaration and definition",
+        "Member variables, methods, constructors, destructors",
+        "Inheritance and protected access"
+      ]
+    },
+    {
+      "type": "module",
+      "module_number": 8,
+      "title": "GUI",
+      "start_date": "2026-06-30",
+      "end_date": "2026-07-02",
+      "topics": [
+        "Lightweight GUI via CLI or SDL2/ImGui",
+        "Event loop basics and GUI inputs",
+        "Connecting model and view"
+      ]
+    },
+    {
+      "date": "2026-07-03",
+      "type": "event",
+      "title": "HOLIDAY"
+    },
+    {
+      "type": "module",
+      "module_number": 9,
+      "title": "Overloading & Poly",
+      "start_date": "2026-07-06",
+      "end_date": "2026-07-08",
+      "topics": [
+        "Overloading operators (<<, ==, +, etc.)",
+        "Virtual functions and dynamic dispatch",
+        "Abstract classes and interfaces"
+      ]
+    },
+    {
+      "date": "2026-07-08",
+      "type": "deadline",
+      "title": "Project 3 Due"
+    },
+    {
+      "type": "module",
+      "module_number": 10,
+      "title": "Smart Pointers",
+      "start_date": "2026-07-09",
+      "end_date": "2026-07-13",
+      "topics": [
+        "Raw pointers, new/delete",
+        "Smart pointers: unique_ptr, shared_ptr, weak_ptr",
+        "Ownership semantics and RAII"
+      ]
+    },
+    {
+      "type": "module",
+      "module_number": 11,
+      "title": "Lists & Trees",
+      "start_date": "2026-07-14",
+      "end_date": "2026-07-16",
+      "topics": [
+        "Building singly linked lists with Node*",
+        "Binary Search Trees: insert, search, traverse",
+        "Manual memory management and cleanup"
+      ]
+    },
+    {
+      "type": "module",
+      "module_number": 12,
+      "title": "Design Patterns",
+      "start_date": "2026-07-17",
+      "end_date": "2026-07-20",
+      "topics": [
+        "Strategy, Observer, Factory, Decorator patterns",
+        "When and why to use design patterns",
+        "Pattern implementation examples"
+      ]
+    },
+    {
+      "date": "2026-07-21",
+      "type": "deadline",
+      "title": "Project 4 Due"
+    },
+    {
+      "type": "module",
+      "module_number": 13,
+      "title": "Graphs",
+      "start_date": "2026-07-22",
+      "end_date": "2026-07-24",
+      "topics": [
+        "Graph representations: adjacency list vs matrix",
+        "Depth-First Search (DFS) and Breadth-First Search (BFS)",
+        "Optional: shortest path or topological sort"
+      ]
+    },
+    {
+      "type": "exam",
+      "title": "Final Exam",
+      "start_date": "2026-07-27",
+      "end_date": "2026-07-29",
+      "description": "Comprehensive final exam covering entire semester"
+    },
+    {
+      "date": "2026-07-30",
+      "type": "event",
+      "title": "GRADES DUE"
+    }
+  ],
+  "archived_files": [
+    {
+      "filename": "syllabus.pdf",
+      "original_name": "LTI Launch.pdf",
+      "path": "raw/syllabus.pdf",
+      "type": "syllabus",
+      "description": "Official course syllabus containing course objectives, materials, grading details, policies, and schedule.",
+      "added_at": "2026-06-09T18:19:00Z",
+      "custom_fields": {}
+    },
+    {
+      "filename": "ai_use_policy.pdf",
+      "original_name": "ai_use.pdf",
+      "path": "raw/ai_use_policy.pdf",
+      "type": "policy",
+      "description": "Detailed guidelines and constraints regarding the use of AI tools in this course.",
+      "added_at": "2026-06-09T18:19:00Z",
+      "custom_fields": {}
+    },
+    {
+      "filename": "course_schedule.png",
+      "original_name": "program2_schedule.png",
+      "path": "raw/course_schedule.png",
+      "type": "schedule",
+      "description": "Visual calendar grid detailing modules, topics, due dates, holidays, and exams.",
+      "added_at": "2026-06-09T18:19:00Z",
+      "custom_fields": {}
+    },
+    {
+      "filename": "instructor_info.txt",
+      "original_name": "instructor_info.txt",
+      "path": "raw/instructor_info.txt",
+      "type": "info",
+      "description": "Contact info, email, pronouns, and Zoom/availability notes for the instructor.",
+      "added_at": "2026-06-09T18:20:00Z",
+      "custom_fields": {}
+    },
+    {
+      "filename": "textbook.url",
+      "original_name": "textbook.url",
+      "path": "raw/textbook.url",
+      "type": "link",
+      "description": "Internet shortcut linking to the required online course textbook.",
+      "added_at": "2026-06-09T18:20:00Z",
+      "custom_fields": {}
+    }
+  ]
+}
