@@ -4,6 +4,13 @@ This repository contains notes, archived files, and a structured database for CP
 
 ---
 
+## Project Workflow & Guidelines
+
+- **[.project-rules.md](file:///.project-rules.md)**: Stores critical workflow constraints (Git versioning rules, plan-driven development, virtual environment requirements) which the AI assistant reviews regularly before every task.
+- **[docs/](file:///docs)**: Archives past development artifacts, plans, and walkthroughs for easy tracking and review.
+
+---
+
 ## Architecture Overview
 
 1. **`course_db.json`**: A structured, single source of truth document database storing:
