@@ -380,8 +380,9 @@
     {
       "filename": "participation01.md",
       "original_name": "participation01.md",
-      "path": "raw/participation01.md",
+      "path": "raw/module-01/participation01.md",
       "type": "assignment",
+      "module": "module-01",
       "description": "First gradeable participation product - Introductions",
       "added_at": "2026-06-09T23:40:37Z",
       "custom_fields": {}
