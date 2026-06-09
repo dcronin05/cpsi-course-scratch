@@ -27,7 +27,9 @@
     "textbook": {
       "title": "Programming",
       "subtitle": "Principles and Practice Using C++",
-      "authors": ["Bjarne Stroustrup"],
+      "authors": [
+        "Bjarne Stroustrup"
+      ],
       "isbn": "9780321992789",
       "required": false,
       "link": "https://txtbook.dev/NicholasSeward/CppBook"
@@ -42,13 +44,34 @@
       "F": "less than 60"
     },
     "grading_criteria": [
-      { "category": "Quiz", "weight": 10 },
-      { "category": "Tutorial", "weight": 10 },
-      { "category": "Practice", "weight": 10 },
-      { "category": "Participation", "weight": 10 },
-      { "category": "Project", "weight": 30 },
-      { "category": "Midterm", "weight": 10 },
-      { "category": "Final", "weight": 20 }
+      {
+        "category": "Quiz",
+        "weight": 10
+      },
+      {
+        "category": "Tutorial",
+        "weight": 10
+      },
+      {
+        "category": "Practice",
+        "weight": 10
+      },
+      {
+        "category": "Participation",
+        "weight": 10
+      },
+      {
+        "category": "Project",
+        "weight": 30
+      },
+      {
+        "category": "Midterm",
+        "weight": 10
+      },
+      {
+        "category": "Final",
+        "weight": 20
+      }
     ],
     "ai_use": {
       "instructional_toolchain": "ideation, drafting, formatting, documentation, slides, quizzes, and grading assistance (comments only; all final decisions are human).",
@@ -316,6 +339,15 @@
       "type": "link",
       "description": "Internet shortcut linking to the required online course textbook.",
       "added_at": "2026-06-09T18:20:00Z",
+      "custom_fields": {}
+    },
+    {
+      "filename": "participation01.md",
+      "original_name": "participation01.md",
+      "path": "raw/participation01.md",
+      "type": "assignment",
+      "description": "First gradeable participation product - Introductions",
+      "added_at": "2026-06-09T23:40:37Z",
       "custom_fields": {}
     }
   ]
