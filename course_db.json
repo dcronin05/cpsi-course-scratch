@@ -330,8 +330,9 @@
     {
       "filename": "syllabus.pdf",
       "original_name": "LTI Launch.pdf",
-      "path": "raw/syllabus.pdf",
+      "path": "raw/getting-started/syllabus.pdf",
       "type": "syllabus",
+      "module": "getting-started",
       "description": "Official course syllabus containing course objectives, materials, grading details, policies, and schedule.",
       "added_at": "2026-06-09T18:19:00Z",
       "custom_fields": {}
@@ -339,8 +340,9 @@
     {
       "filename": "ai_use_policy.pdf",
       "original_name": "ai_use.pdf",
-      "path": "raw/ai_use_policy.pdf",
+      "path": "raw/getting-started/ai_use_policy.pdf",
       "type": "policy",
+      "module": "getting-started",
       "description": "Detailed guidelines and constraints regarding the use of AI tools in this course.",
       "added_at": "2026-06-09T18:19:00Z",
       "custom_fields": {}
@@ -348,8 +350,9 @@
     {
       "filename": "course_schedule.png",
       "original_name": "program2_schedule.png",
-      "path": "raw/course_schedule.png",
+      "path": "raw/getting-started/course_schedule.png",
       "type": "schedule",
+      "module": "getting-started",
       "description": "Visual calendar grid detailing modules, topics, due dates, holidays, and exams.",
       "added_at": "2026-06-09T18:19:00Z",
       "custom_fields": {}
@@ -357,8 +360,9 @@
     {
       "filename": "instructor_info.txt",
       "original_name": "instructor_info.txt",
-      "path": "raw/instructor_info.txt",
+      "path": "raw/getting-started/instructor_info.txt",
       "type": "info",
+      "module": "getting-started",
       "description": "Contact info, email, pronouns, and Zoom/availability notes for the instructor.",
       "added_at": "2026-06-09T18:20:00Z",
       "custom_fields": {}
@@ -366,8 +370,9 @@
     {
       "filename": "textbook.url",
       "original_name": "textbook.url",
-      "path": "raw/textbook.url",
+      "path": "raw/getting-started/textbook.url",
       "type": "link",
+      "module": "getting-started",
       "description": "Internet shortcut linking to the required online course textbook.",
       "added_at": "2026-06-09T18:20:00Z",
       "custom_fields": {}
