@@ -25,6 +25,19 @@
   },
   "materials": {
     "textbook": {
+      "title": "C++Book",
+      "authors": [
+        "Nicholas Seward"
+      ],
+      "required": true,
+      "link": "https://txtbook.dev/NicholasSeward/CppBook",
+      "sourcing": {
+        "platform": "GitHub",
+        "repository": "https://github.com/NicholasSeward/CppBook.git",
+        "local_path": "textbook/"
+      }
+    },
+    "optional_textbook": {
       "title": "Programming",
       "subtitle": "Principles and Practice Using C++",
       "authors": [
@@ -293,6 +306,24 @@
       "date": "2026-07-30",
       "type": "event",
       "title": "GRADES DUE"
+    }
+  ],
+  "assignments": [
+    {
+      "id": "participation01",
+      "title": "Introductions",
+      "type": "participation",
+      "description": "Introductions discussion post and peer comments.",
+      "prompts": [
+        "Who are you?",
+        "What is your major?",
+        "Do you have any interesting summer plans?",
+        "If you couldn't be a human, what animal would you be? Why? Embed an image of that animal"
+      ],
+      "requirements": {
+        "profile_image": "Update your Blackboard profile image so that your face is clearly visible. Filters or AI-generated images are fine as long as your image clearly represents you. The goal is to help me connect names to IRL faces. If you have privacy concerns or other issues, please contact me and we will make an accommodation.",
+        "peer_interaction": "Make a thoughtful, constructive comment on at least two classmates’ posts."
+      }
     }
   ],
   "archived_files": [
