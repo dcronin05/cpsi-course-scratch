@@ -386,6 +386,66 @@
       "description": "First gradeable participation product - Introductions",
       "added_at": "2026-06-09T23:40:37Z",
       "custom_fields": {}
+    },
+    {
+      "filename": "lecture_videos.md",
+      "original_name": "lecture_videos.md",
+      "path": "raw/module-01/lecture_videos.md",
+      "type": "lecture",
+      "description": "Module 01 Lecture Videos and Slide Links",
+      "added_at": "2026-06-09T23:57:21Z",
+      "custom_fields": {},
+      "module": "module-01"
+    },
+    {
+      "filename": "practice01_instructions.md",
+      "original_name": "practice01_instructions.md",
+      "path": "raw/module-01/practice01_instructions.md",
+      "type": "assignment",
+      "description": "Practice 01: Menu Application Assignment Instructions",
+      "added_at": "2026-06-09T23:57:21Z",
+      "custom_fields": {},
+      "module": "module-01"
+    },
+    {
+      "filename": "programming-2-how-to-use-github-and-codespace_transcript.md",
+      "original_name": "programming-2-how-to-use-github-and-codespace_transcript.md",
+      "path": "raw/module-01/programming-2-how-to-use-github-and-codespace_transcript.md",
+      "type": "transcript",
+      "description": "Transcript for video: Programming 2: How to use GitHub and Codespace?",
+      "added_at": "2026-06-09T23:57:21Z",
+      "custom_fields": {},
+      "module": "module-01"
+    },
+    {
+      "filename": "programming-2-module-1-lecture-slides-part-a_transcript.md",
+      "original_name": "programming-2-module-1-lecture-slides-part-a_transcript.md",
+      "path": "raw/module-01/programming-2-module-1-lecture-slides-part-a_transcript.md",
+      "type": "transcript",
+      "description": "Transcript for video: Programming 2: Module 1 (Lecture Slides Part A)",
+      "added_at": "2026-06-09T23:57:21Z",
+      "custom_fields": {},
+      "module": "module-01"
+    },
+    {
+      "filename": "programming-2-module-1-lecture-slides-part-b_transcript.md",
+      "original_name": "programming-2-module-1-lecture-slides-part-b_transcript.md",
+      "path": "raw/module-01/programming-2-module-1-lecture-slides-part-b_transcript.md",
+      "type": "transcript",
+      "description": "Transcript for video: Programming 2: Module 1 (Lecture Slides Part B)",
+      "added_at": "2026-06-09T23:57:21Z",
+      "custom_fields": {},
+      "module": "module-01"
+    },
+    {
+      "filename": "quiz01.md",
+      "original_name": "quiz01.md",
+      "path": "raw/module-01/quiz01.md",
+      "type": "assignment",
+      "description": "Module 01 Quiz 01 details",
+      "added_at": "2026-06-09T23:57:21Z",
+      "custom_fields": {},
+      "module": "module-01"
     }
   ]
 }
