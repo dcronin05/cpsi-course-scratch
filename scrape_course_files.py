@@ -58,28 +58,27 @@ def extract_youtube_id(url):
 def download_transcript(video_id, title):
     print(f"Downloading transcript for video: '{title}' ({video_id})...")
     try:
-        transcript_list = YouTubeTranscriptApi.get_transcript(video_id)
+        api = YouTubeTranscriptApi()
+        transcript_list = api.fetch(video_id)
         lines = []
         for entry in transcript_list:
-            start = int(entry['start'])
+            start = int(entry.start)
             minutes = start // 60
             seconds = start % 60
             timestamp = f"[{minutes:02d}:{seconds:02d}]"
-            text = entry['text'].replace('\n', ' ')
+            text = entry.text.replace('\n', ' ')
             lines.append(f"{timestamp} {text}")
         content = f"# Transcript: {title}\n\n" + "\n".join(lines) + "\n"
         print(f"✓ Successfully retrieved transcript ({len(lines)} lines).")
         return content
     except Exception as e:
         print(f"✗ Failed to download transcript for {video_id}: {e}")
-        # Return fallback content
         return f"# Transcript: {title}\n\nTranscript not available: {e}\n"
 
 def html_to_markdown(elem):
     if elem is None:
         return ""
     if isinstance(elem, str):
-        # Escape markdown characters where appropriate, but generally keep clean
         return elem
     
     tag = elem.name
@@ -88,7 +87,6 @@ def html_to_markdown(elem):
         text = "".join(html_to_markdown(child) for child in elem.children).strip()
         return f"\n\n{'#' * level} {text}\n\n"
     elif tag == 'p':
-        # If it has a video/iframe, handle inside div or let it flow
         text = "".join(html_to_markdown(child) for child in elem.children)
         if text.strip() == "":
             return ""
@@ -127,7 +125,6 @@ def html_to_markdown(elem):
         code = elem.get_text()
         return f"\n\n```cpp\n{code}\n```\n\n"
     elif tag == 'div':
-        # Check if it's a video
         if elem.get('data-bbtype') == 'video' or 'bb-video' in elem.get('class', []):
             video_info = elem.get('data-bbfile', '')
             video_url = ""
@@ -154,18 +151,19 @@ def html_to_markdown(elem):
         return "".join(html_to_markdown(child) for child in elem.children)
 
 def clean_markdown_whitespace(md):
-    # Normalize excessive newlines
     md = re.sub(r'\n{3,}', '\n\n', md)
-    # Strip whitespace at start/end of lines
     lines = [line.rstrip() for line in md.split('\n')]
     return '\n'.join(lines).strip() + '\n'
 
 def scrape_lecture_videos():
+    if not os.path.exists(LECTURE_HTML):
+        print(f"Skipping scraping {LECTURE_HTML} because it doesn't exist (already cleaned up).")
+        return os.path.join(MODULE_PATH, "lecture_videos.md")
+        
     print(f"Parsing {LECTURE_HTML}...")
     with open(LECTURE_HTML, 'r', encoding='utf-8', errors='ignore') as f:
         soup = BeautifulSoup(f.read(), 'html.parser')
     
-    # Target container for lecture content
     editor_container = soup.find('div', class_='ql-editor')
     if not editor_container:
         print("Warning: Could not find editor container in lecture_videos.html. Falling back to body.")
@@ -174,7 +172,6 @@ def scrape_lecture_videos():
     markdown_content = html_to_markdown(editor_container)
     markdown_content = clean_markdown_whitespace(markdown_content)
     
-    # Prepend title
     markdown_content = f"# Module 1 Lecture Videos\n\n" + markdown_content
     
     out_path = os.path.join(MODULE_PATH, "lecture_videos.md")
@@ -184,12 +181,14 @@ def scrape_lecture_videos():
     return out_path
 
 def scrape_participation01():
+    if not os.path.exists(PARTICIPATION_HTML):
+        print(f"Skipping scraping {PARTICIPATION_HTML} because it doesn't exist (already cleaned up).")
+        return os.path.join(MODULE_PATH, "practice01_instructions.md")
+        
     print(f"Parsing {PARTICIPATION_HTML}...")
     with open(PARTICIPATION_HTML, 'r', encoding='utf-8', errors='ignore') as f:
         soup = BeautifulSoup(f.read(), 'html.parser')
     
-    # Target assignment instructions container
-    # The container class is makeStylesinstructionsWrapper-0-2-5603 or the ql-editor under it
     editor_container = soup.find('div', id='bb-editorassignment-attempt-authoring-instructions')
     if not editor_container:
         editor_container = soup.find('div', class_='ql-editor')
@@ -200,7 +199,6 @@ def scrape_participation01():
     markdown_content = html_to_markdown(editor_container)
     markdown_content = clean_markdown_whitespace(markdown_content)
     
-    # Save as practice01_instructions.md
     out_path = os.path.join(MODULE_PATH, "practice01_instructions.md")
     with open(out_path, 'w', encoding='utf-8') as f:
         f.write(markdown_content)
@@ -208,32 +206,42 @@ def scrape_participation01():
     return out_path
 
 def scrape_and_download_transcripts():
-    # Find all unique YouTube links in both HTML files
     video_ids = set()
     
+    # Try reading from HTML files first
+    html_found = False
     for html_file in [LECTURE_HTML, PARTICIPATION_HTML]:
-        if not os.path.exists(html_file):
-            continue
-        with open(html_file, 'r', encoding='utf-8', errors='ignore') as f:
-            content = f.read()
-        
-        # Regex search
-        for match in re.findall(r'youtube\.com/embed/([a-zA-Z0-9_-]{11})', content):
-            video_ids.add(match)
-        for match in re.findall(r'youtube\.com/watch\?v=([a-zA-Z0-9_-]{11})', content):
-            video_ids.add(match)
-        for match in re.findall(r'youtu\.be/([a-zA-Z0-9_-]{11})', content):
-            video_ids.add(match)
+        if os.path.exists(html_file):
+            html_found = True
+            with open(html_file, 'r', encoding='utf-8', errors='ignore') as f:
+                content = f.read()
             
+            for match in re.findall(r'youtube\.com/embed/([a-zA-Z0-9_-]{11})', content):
+                video_ids.add(match)
+            for match in re.findall(r'youtube\.com/watch\?v=([a-zA-Z0-9_-]{11})', content):
+                video_ids.add(match)
+            for match in re.findall(r'youtu\.be/([a-zA-Z0-9_-]{11})', content):
+                video_ids.add(match)
+                
+    if not html_found:
+        # Fallback: parse video links from the newly created markdown files
+        print("HTML files not found. Parsing video links from markdown files instead...")
+        for md_file in ["lecture_videos.md", "practice01_instructions.md"]:
+            md_path = os.path.join(MODULE_PATH, md_file)
+            if os.path.exists(md_path):
+                with open(md_path, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                # Find links format: [Video: Title](https://youtube.com/watch?v=ID)
+                for match in re.findall(r'youtube\.com/watch\?v=([a-zA-Z0-9_-]{11})', content):
+                    video_ids.add(match)
+                    
     print(f"Found unique YouTube video IDs: {list(video_ids)}")
     
     transcript_files = []
     for vid in sorted(video_ids):
         title = get_video_title(vid)
-        # Sanitize title for filename
         sanitized = re.sub(r'[^a-zA-Z0-9\s-]', '', title).strip().lower()
         sanitized = re.sub(r'[\s-]+', '-', sanitized)
-        # Avoid extremely long filenames
         sanitized = sanitized[:60].strip('-')
         filename = f"{sanitized}_transcript.md"
         
@@ -249,7 +257,6 @@ def scrape_and_download_transcripts():
     return transcript_files
 
 def register_file_in_db(filepath, file_type, description):
-    # Get relative path from workspace root
     rel_path = os.path.relpath(filepath, WORKSPACE_PATH)
     print(f"Registering {rel_path} in database as type '{file_type}'...")
     
@@ -274,7 +281,6 @@ def cleanup_source_files():
             os.remove(path)
             print(f"Deleted file: {path}")
             
-    # Clean up associated folders
     for folder_name in ["lecture_videos_files", "participation01_files"]:
         folder_path = os.path.join(MODULE_PATH, folder_name)
         if os.path.exists(folder_path):
