@@ -11,7 +11,7 @@ DB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "course_db.js
 # Database JSON schema definition
 SCHEMA = {
     "type": "object",
-    "required": ["course", "instructor", "materials", "policies", "schedule", "archived_files"],
+    "required": ["course", "instructor", "materials", "policies", "schedule", "archived_files", "assignments"],
     "properties": {
         "course": {
             "type": "object",
@@ -49,6 +49,25 @@ SCHEMA = {
                 "textbook": {
                     "type": "object",
                     "required": ["link"],
+                    "properties": {
+                        "title": {"type": "string"},
+                        "subtitle": {"type": "string"},
+                        "authors": {"type": "array", "items": {"type": "string"}},
+                        "isbn": {"type": "string"},
+                        "required": {"type": "boolean"},
+                        "link": {"type": "string"},
+                        "sourcing": {
+                            "type": "object",
+                            "properties": {
+                                "platform": {"type": "string"},
+                                "repository": {"type": "string"},
+                                "local_path": {"type": "string"}
+                            }
+                        }
+                    }
+                },
+                "optional_textbook": {
+                    "type": "object",
                     "properties": {
                         "title": {"type": "string"},
                         "subtitle": {"type": "string"},
@@ -105,6 +124,21 @@ SCHEMA = {
                     "end_date": {"type": "string"},
                     "topics": {"type": "array", "items": {"type": "string"}},
                     "description": {"type": "string"}
+                }
+            }
+        },
+        "assignments": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": ["id", "title", "type"],
+                "properties": {
+                    "id": {"type": "string"},
+                    "title": {"type": "string"},
+                    "type": {"type": "string"},
+                    "description": {"type": "string"},
+                    "prompts": {"type": "array", "items": {"type": "string"}},
+                    "requirements": {"type": "object"}
                 }
             }
         },
@@ -264,6 +298,43 @@ def cmd_register_file(args):
     if custom_dict:
         print(f"  Custom fields added: {custom_dict}")
 
+def cmd_update_textbook(args):
+    import subprocess
+    db = load_db()
+    
+    sourcing = db.get("materials", {}).get("textbook", {}).get("sourcing", {})
+    if not sourcing:
+        print("Error: No textbook sourcing configuration found in course_db.json.", file=sys.stderr)
+        sys.exit(1)
+        
+    local_path = sourcing.get("local_path", "textbook/")
+    repo_url = sourcing.get("repository", "https://github.com/NicholasSeward/CppBook.git")
+    
+    abs_local_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), local_path)
+    
+    if os.path.exists(abs_local_path):
+        if os.path.exists(os.path.join(abs_local_path, ".git")):
+            print(f"Updating local textbook copy at {local_path} from upstream...")
+            try:
+                res = subprocess.run(["git", "pull"], cwd=abs_local_path, check=True, capture_output=True, text=True)
+                print(res.stdout)
+                print("✓ Textbook updated successfully.")
+            except subprocess.CalledProcessError as cpe:
+                print(f"Error running git pull: {cpe.stderr}", file=sys.stderr)
+                sys.exit(1)
+        else:
+            print(f"Error: Directory '{local_path}' exists but is not a Git repository.", file=sys.stderr)
+            sys.exit(1)
+    else:
+        print(f"Local textbook directory '{local_path}' not found. Cloning repository...")
+        try:
+            res = subprocess.run(["git", "clone", repo_url, abs_local_path], check=True, capture_output=True, text=True)
+            print(res.stdout)
+            print("✓ Textbook cloned successfully.")
+        except subprocess.CalledProcessError as cpe:
+            print(f"Error running git clone: {cpe.stderr}", file=sys.stderr)
+            sys.exit(1)
+
 def main():
     parser = argparse.ArgumentParser(description="CPSI Course Storage Database Manager CLI")
     subparsers = parser.add_subparsers(dest="command", help="Sub-commands")
@@ -287,6 +358,9 @@ def main():
     parser_reg.add_argument("--force", action="store_true", help="Overwrite existing registration")
     parser_reg.add_argument("--custom", nargs="*", help="Custom fields in key=value format (e.g. module=3 tags=c++)")
     
+    # Update textbook command
+    subparsers.add_parser("update-textbook", help="Fetch/pull latest updates from the textbook Git repository")
+    
     args = parser.parse_args()
     
     if not args.command:
@@ -297,7 +371,8 @@ def main():
         "validate": cmd_validate,
         "summary": cmd_summary,
         "schedule": cmd_schedule,
-        "register-file": cmd_register_file
+        "register-file": cmd_register_file,
+        "update-textbook": cmd_update_textbook
     }
     
     cmds[args.command](args)
