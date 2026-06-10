@@ -2,16 +2,12 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug C++ Program (LLDB)",
-            "type": "cppdbg",
+            "name": "Debug C++ Program (CodeLLDB)",
+            "type": "lldb",
             "request": "launch",
             "program": "${workspaceFolder}/main",
             "args": [],
-            "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
-            "environment": [],
-            "externalConsole": false,
-            "MIMode": "lldb",
             "preLaunchTask": "Build C++ Program"
         }
     ]
