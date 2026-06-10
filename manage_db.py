@@ -131,14 +131,23 @@ SCHEMA = {
             "type": "array",
             "items": {
                 "type": "object",
-                "required": ["id", "title", "type"],
+                "required": ["id", "title", "type", "status", "grade", "related_resources"],
                 "properties": {
                     "id": {"type": "string"},
                     "title": {"type": "string"},
                     "type": {"type": "string"},
                     "description": {"type": "string"},
                     "prompts": {"type": "array", "items": {"type": "string"}},
-                    "requirements": {"type": "object"}
+                    "requirements": {"type": "object"},
+                    "status": {
+                        "type": "string",
+                        "enum": ["unstarted", "in-progress", "submitted", "graded"]
+                    },
+                    "grade": {"type": ["number", "null"]},
+                    "related_resources": {
+                        "type": "array",
+                        "items": {"type": "string"}
+                    }
                 }
             }
         },
@@ -338,6 +347,142 @@ def cmd_update_textbook(args):
             print(f"Error running git clone: {cpe.stderr}", file=sys.stderr)
             sys.exit(1)
 
+def get_letter_grade(db, score):
+    scale = db.get("policies", {}).get("grading_scale", {})
+    default_scale = [('A', 90.0), ('B', 80.0), ('C', 70.0), ('D', 60.0), ('F', 0.0)]
+    
+    parsed_scale = []
+    for letter, range_str in scale.items():
+        range_str = range_str.lower().strip()
+        if '-' in range_str:
+            try:
+                low = float(range_str.split('-')[0].strip())
+                parsed_scale.append((letter, low))
+            except ValueError:
+                pass
+        elif 'less than' in range_str:
+            parsed_scale.append((letter, 0.0))
+        else:
+            import re
+            nums = re.findall(r'\d+\.?\d*', range_str)
+            if nums:
+                parsed_scale.append((letter, float(nums[0])))
+                
+    if parsed_scale:
+        parsed_scale.sort(key=lambda x: x[1], reverse=True)
+    else:
+        parsed_scale = default_scale
+        
+    for letter, low_bound in parsed_scale:
+        if score >= low_bound:
+            return letter
+            
+    return "F"
+
+def cmd_grade_summary(args):
+    db = load_db()
+    
+    criteria = db.get("policies", {}).get("grading_criteria", [])
+    if not criteria:
+        print("Error: No grading criteria found in database.", file=sys.stderr)
+        sys.exit(1)
+        
+    assignments = db.get("assignments", [])
+    
+    cat_grades = {}
+    for crit in criteria:
+        cat_grades[crit["category"].lower()] = []
+        
+    for ass in assignments:
+        atype = ass.get("type", "").lower()
+        if atype in cat_grades:
+            if ass.get("status") == "graded" and ass.get("grade") is not None:
+                cat_grades[atype].append(ass["grade"])
+        else:
+            matched = False
+            for cat in cat_grades:
+                if cat in atype or atype in cat:
+                    if ass.get("status") == "graded" and ass.get("grade") is not None:
+                        cat_grades[cat].append(ass["grade"])
+                    matched = True
+                    break
+            if not matched:
+                print(f"Warning: Assignment '{ass['id']}' type '{atype}' did not match any grading criteria category.")
+                
+    print("=" * 75)
+    print(f"{'Category':<15} | {'Weight (%)':<10} | {'Graded Count':<12} | {'Average (%)':<12} | {'Contribution (%)':<15}")
+    print("-" * 75)
+    
+    total_running_weight = 0.0
+    total_running_score = 0.0
+    total_semester_score = 0.0
+    
+    for crit in criteria:
+        cat_name = crit["category"]
+        cat_key = cat_name.lower()
+        weight = crit["weight"]
+        
+        grades = cat_grades.get(cat_key, [])
+        count = len(grades)
+        
+        if count > 0:
+            avg = sum(grades) / count
+            contrib = (avg / 100.0) * weight
+            avg_str = f"{avg:.2f}%"
+            contrib_str = f"{contrib:.2f}%"
+            
+            total_running_weight += weight
+            total_running_score += contrib
+            total_semester_score += contrib
+        else:
+            avg_str = "N/A"
+            contrib_str = "0.00%"
+            
+        print(f"{cat_name:<15} | {weight:<10} | {count:<12} | {avg_str:<12} | {contrib_str:<15}")
+        
+    print("=" * 75)
+    
+    if total_running_weight > 0:
+        running_grade = (total_running_score / total_running_weight) * 100.0
+        running_letter = get_letter_grade(db, running_grade)
+        running_str = f"{running_grade:.2f}% ({running_letter})"
+    else:
+        running_str = "N/A"
+        
+    semester_grade = total_semester_score
+    semester_letter = get_letter_grade(db, semester_grade)
+    semester_str = f"{semester_grade:.2f}% ({semester_letter})"
+    
+    print(f"Running Grade (Graded only)       : {running_str}")
+    print(f"Current Semester Grade (with 0s)  : {semester_str}")
+    print("=" * 75)
+
+def cmd_update_assignment(args):
+    db = load_db()
+    found = False
+    for ass in db.get("assignments", []):
+        if ass["id"] == args.assignment_id:
+            found = True
+            if args.status is not None:
+                ass["status"] = args.status
+            if args.clear_grade:
+                ass["grade"] = None
+            elif args.grade is not None:
+                if args.grade < 0 or args.grade > 100:
+                    print(f"Error: Grade must be between 0.0 and 100.0 (got {args.grade}).", file=sys.stderr)
+                    sys.exit(1)
+                ass["grade"] = args.grade
+            if args.resources is not None:
+                ass["related_resources"] = args.resources
+            break
+            
+    if not found:
+        print(f"Error: Assignment with ID '{args.assignment_id}' not found.", file=sys.stderr)
+        sys.exit(1)
+        
+    save_db(db)
+    print(f"✓ Updated assignment '{args.assignment_id}' in database.")
+
 def main():
     parser = argparse.ArgumentParser(description="CPSI Course Storage Database Manager CLI")
     subparsers = parser.add_subparsers(dest="command", help="Sub-commands")
@@ -365,6 +510,17 @@ def main():
     # Update textbook command
     subparsers.add_parser("update-textbook", help="Fetch/pull latest updates from the textbook Git repository")
     
+    # Grade summary command
+    subparsers.add_parser("grade-summary", help="Print course grade summary based on weighting")
+    
+    # Update assignment command
+    parser_up_ass = subparsers.add_parser("update-assignment", help="Update status, grade, or resources for an assignment")
+    parser_up_ass.add_argument("assignment_id", help="ID of the assignment to update")
+    parser_up_ass.add_argument("--status", choices=["unstarted", "in-progress", "submitted", "graded"], help="Assignment status")
+    parser_up_ass.add_argument("--grade", type=float, help="Assignment grade percentage (0.0 to 100.0)")
+    parser_up_ass.add_argument("--clear-grade", action="store_true", help="Clear the assignment's grade (set to null)")
+    parser_up_ass.add_argument("--resources", nargs="*", help="Related resource paths (overwrites existing list)")
+    
     args = parser.parse_args()
     
     if not args.command:
@@ -376,7 +532,9 @@ def main():
         "summary": cmd_summary,
         "schedule": cmd_schedule,
         "register-file": cmd_register_file,
-        "update-textbook": cmd_update_textbook
+        "update-textbook": cmd_update_textbook,
+        "grade-summary": cmd_grade_summary,
+        "update-assignment": cmd_update_assignment
     }
     
     cmds[args.command](args)

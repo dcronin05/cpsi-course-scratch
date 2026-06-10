@@ -323,7 +323,12 @@
       "requirements": {
         "profile_image": "Update your Blackboard profile image so that your face is clearly visible. Filters or AI-generated images are fine as long as your image clearly represents you. The goal is to help me connect names to IRL faces. If you have privacy concerns or other issues, please contact me and we will make an accommodation.",
         "peer_interaction": "Make a thoughtful, constructive comment on at least two classmates’ posts."
-      }
+      },
+      "status": "submitted",
+      "grade": null,
+      "related_resources": [
+        "raw/module-01/participation01.md"
+      ]
     },
     {
       "id": "practice01",
@@ -337,7 +342,13 @@
         ],
         "ai_disclaimer": "Your main.cpp must include an AI Disclaimer at the top.",
         "autograder_link": "https://classroom.github.com/a/iSUGhlbp"
-      }
+      },
+      "status": "unstarted",
+      "grade": null,
+      "related_resources": [
+        "raw/module-01/practice01_instructions.md",
+        "main.cpp"
+      ]
     },
     {
       "id": "quiz01",
@@ -347,7 +358,12 @@
       "prompts": [],
       "requirements": {
         "due_date": "2026-05-28T23:59:00-05:00"
-      }
+      },
+      "status": "unstarted",
+      "grade": null,
+      "related_resources": [
+        "raw/module-01/quiz01.md"
+      ]
     }
   ],
   "archived_files": [
