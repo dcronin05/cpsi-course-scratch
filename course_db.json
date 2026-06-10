@@ -332,7 +332,9 @@
       "description": "Create a C++ console menu application with grade calculator and star triangle options.",
       "prompts": [],
       "requirements": {
-        "files": ["main.cpp"],
+        "files": [
+          "main.cpp"
+        ],
         "ai_disclaimer": "Your main.cpp must include an AI Disclaimer at the top.",
         "autograder_link": "https://classroom.github.com/a/iSUGhlbp"
       }
@@ -466,6 +468,16 @@
       "type": "assignment",
       "description": "Module 01 Quiz 01 details",
       "added_at": "2026-06-09T23:57:21Z",
+      "custom_fields": {},
+      "module": "module-01"
+    },
+    {
+      "filename": "Module 1 - C++ Fundamentals Review.pdf",
+      "original_name": "Module 1 - C++ Fundamentals Review.pdf",
+      "path": "raw/module-01/Module 1 - C++ Fundamentals Review.pdf",
+      "type": "lecture",
+      "description": "Module 01 Lecture Slides: C++ Fundamentals Review",
+      "added_at": "2026-06-10T01:43:41Z",
       "custom_fields": {},
       "module": "module-01"
     }
