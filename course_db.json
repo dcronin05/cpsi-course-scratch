@@ -364,6 +364,160 @@
       "related_resources": [
         "raw/module-01/quiz01.md"
       ]
+    },
+    {
+      "id": "practice02",
+      "title": "Practice02",
+      "type": "practice",
+      "description": "Blackboard gradebook registered assignment Practice02.",
+      "prompts": [],
+      "requirements": {},
+      "status": "unstarted",
+      "grade": null,
+      "related_resources": []
+    },
+    {
+      "id": "quiz02",
+      "title": "Quiz02",
+      "type": "quiz",
+      "description": "Blackboard gradebook registered assignment Quiz02.",
+      "prompts": [],
+      "requirements": {},
+      "status": "unstarted",
+      "grade": null,
+      "related_resources": []
+    },
+    {
+      "id": "tutorial02",
+      "title": "Tutorial02",
+      "type": "tutorial",
+      "description": "Blackboard gradebook registered assignment Tutorial02.",
+      "prompts": [],
+      "requirements": {},
+      "status": "unstarted",
+      "grade": null,
+      "related_resources": []
+    },
+    {
+      "id": "quiz03",
+      "title": "Quiz03",
+      "type": "quiz",
+      "description": "Blackboard gradebook registered assignment Quiz03.",
+      "prompts": [],
+      "requirements": {},
+      "status": "unstarted",
+      "grade": null,
+      "related_resources": []
+    },
+    {
+      "id": "tutorial03",
+      "title": "Tutorial03",
+      "type": "tutorial",
+      "description": "Blackboard gradebook registered assignment Tutorial03.",
+      "prompts": [],
+      "requirements": {},
+      "status": "unstarted",
+      "grade": null,
+      "related_resources": []
+    },
+    {
+      "id": "practice03",
+      "title": "Practice03",
+      "type": "practice",
+      "description": "Blackboard gradebook registered assignment Practice03.",
+      "prompts": [],
+      "requirements": {},
+      "status": "unstarted",
+      "grade": null,
+      "related_resources": []
+    },
+    {
+      "id": "quiz04",
+      "title": "Quiz04",
+      "type": "quiz",
+      "description": "Blackboard gradebook registered assignment Quiz04.",
+      "prompts": [],
+      "requirements": {},
+      "status": "unstarted",
+      "grade": null,
+      "related_resources": []
+    },
+    {
+      "id": "checkin02",
+      "title": "CheckIn02",
+      "type": "participation",
+      "description": "Blackboard gradebook registered assignment CheckIn02.",
+      "prompts": [],
+      "requirements": {},
+      "status": "unstarted",
+      "grade": null,
+      "related_resources": []
+    },
+    {
+      "id": "checkin03",
+      "title": "CheckIn03",
+      "type": "participation",
+      "description": "Blackboard gradebook registered assignment CheckIn03.",
+      "prompts": [],
+      "requirements": {},
+      "status": "unstarted",
+      "grade": null,
+      "related_resources": []
+    },
+    {
+      "id": "checkin01",
+      "title": "CheckIn01",
+      "type": "participation",
+      "description": "Blackboard gradebook registered assignment CheckIn01.",
+      "prompts": [],
+      "requirements": {},
+      "status": "unstarted",
+      "grade": null,
+      "related_resources": []
+    },
+    {
+      "id": "project01",
+      "title": "Project01 - Text Game",
+      "type": "project",
+      "description": "Blackboard gradebook registered assignment Project01 - Text Game.",
+      "prompts": [],
+      "requirements": {},
+      "status": "unstarted",
+      "grade": null,
+      "related_resources": []
+    },
+    {
+      "id": "tutorial04",
+      "title": "Tutorial04",
+      "type": "tutorial",
+      "description": "Blackboard gradebook registered assignment Tutorial04.",
+      "prompts": [],
+      "requirements": {},
+      "status": "unstarted",
+      "grade": null,
+      "related_resources": []
+    },
+    {
+      "id": "practice04",
+      "title": "Practice04",
+      "type": "practice",
+      "description": "Blackboard gradebook registered assignment Practice04.",
+      "prompts": [],
+      "requirements": {},
+      "status": "unstarted",
+      "grade": null,
+      "related_resources": []
+    },
+    {
+      "id": "checkin04",
+      "title": "CheckIn04",
+      "type": "participation",
+      "description": "Blackboard gradebook registered assignment CheckIn04.",
+      "prompts": [],
+      "requirements": {},
+      "status": "unstarted",
+      "grade": null,
+      "related_resources": []
     }
   ],
   "archived_files": [
@@ -574,6 +728,15 @@
         }
       },
       "module": "module-01"
+    },
+    {
+      "filename": "gradebook.html",
+      "original_name": "gradebook.html",
+      "path": "raw/getting-started/gradebook.html",
+      "type": "gradebook",
+      "description": "Blackboard Gradebook Export",
+      "added_at": "2026-06-10T12:58:28Z",
+      "custom_fields": {}
     }
   ]
 }
