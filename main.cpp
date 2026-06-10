@@ -15,10 +15,6 @@ int main() {
 
   //   echoWord();
 
-  int x{};
-  if (x = 10) {
-  };
-
   return 0;
 }
 
