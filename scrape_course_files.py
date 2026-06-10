@@ -9,7 +9,7 @@ import subprocess
 from bs4 import BeautifulSoup
 from youtube_transcript_api import YouTubeTranscriptApi
 
-WORKSPACE_PATH = "/Users/dcronin05/app_development/cpsi-27603-notes"
+WORKSPACE_PATH = os.path.dirname(os.path.abspath(__file__))
 MODULE_PATH = os.path.join(WORKSPACE_PATH, "raw/module-01")
 
 LECTURE_HTML = os.path.join(MODULE_PATH, "lecture_videos.html")
