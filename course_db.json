@@ -359,8 +359,8 @@
       "requirements": {
         "due_date": "2026-05-28T23:59:00-05:00"
       },
-      "status": "unstarted",
-      "grade": null,
+      "status": "graded",
+      "grade": 100.0,
       "related_resources": [
         "raw/module-01/quiz01.md"
       ]
@@ -736,6 +736,15 @@
       "type": "gradebook",
       "description": "Blackboard Gradebook Export",
       "added_at": "2026-06-10T12:58:28Z",
+      "custom_fields": {}
+    },
+    {
+      "filename": "quiz01_attempt_results.html",
+      "original_name": "quiz01_attempt_results.html",
+      "path": "raw/module-01/quiz01_attempt_results.html",
+      "type": "quiz_attempt",
+      "description": "Quiz 01 Attempt Results",
+      "added_at": "2026-06-10T13:18:10Z",
       "custom_fields": {}
     }
   ]
