@@ -475,9 +475,9 @@
       "filename": "Module 1 - C++ Fundamentals Review.pdf",
       "original_name": "Module 1 - C++ Fundamentals Review.pdf",
       "path": "raw/module-01/Module 1 - C++ Fundamentals Review.pdf",
-      "type": "lecture",
-      "description": "Module 01 Lecture Slides: C++ Fundamentals Review",
-      "added_at": "2026-06-10T01:43:41Z",
+      "type": "slides",
+      "description": "Module 01 Lecture Slides. Exported in PDF format due to gamma.app export limitations.",
+      "added_at": "2026-06-10T01:45:27Z",
       "custom_fields": {},
       "module": "module-01"
     }
