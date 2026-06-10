@@ -478,7 +478,85 @@
       "type": "slides",
       "description": "Module 01 Lecture Slides. Exported in PDF format due to gamma.app export limitations.",
       "added_at": "2026-06-10T01:45:27Z",
-      "custom_fields": {},
+      "custom_fields": {
+        "learning_objectives": [
+          "Master C++ program structure and compilation",
+          "Understand fundamental data types and their usage",
+          "Apply operators and expressions correctly",
+          "Implement control flow structures effectively",
+          "Develop proper programming practices and debugging skills"
+        ],
+        "key_terms": {
+          "Compiler": "Translates source code to machine code",
+          "Linker": "Combines object files into executable",
+          "IDE": "Integrated Development Environment",
+          "Variable": "Named storage location for data",
+          "Expression": "Code that produces a value",
+          "Statement": "Complete instruction ending with semicolon",
+          "Control Flow": "Order of statement execution",
+          "Operator": "Symbol that performs operation",
+          "Type Conversion": "Changing one data type to another"
+        },
+        "content_summary": {
+          "compilation_lifecycle": "Write → Compile → Test → Debug → Repeat",
+          "compilation_command": "g++ -o program program.cpp",
+          "fundamental_data_types": [
+            {
+              "type": "bool",
+              "size": "1 byte",
+              "range": "true/false",
+              "use": "Logical values"
+            },
+            {
+              "type": "char",
+              "size": "1 byte",
+              "range": "-128 to 127",
+              "use": "Single characters"
+            },
+            {
+              "type": "int",
+              "size": "4 bytes",
+              "range": "-2^31 to 2^31-1",
+              "use": "General integers"
+            },
+            {
+              "type": "float",
+              "size": "4 bytes",
+              "range": "3.4e-38 to 3.4e+38",
+              "use": "Single precision"
+            },
+            {
+              "type": "double",
+              "size": "8 bytes",
+              "range": "1.7e-308 to 1.7e+308",
+              "use": "Double precision"
+            }
+          ],
+          "debugging_tips": [
+            "Compiler Errors: Read error messages carefully",
+            "Runtime Errors: Use debugger to step through code",
+            "Logic Errors: Add print statements to trace execution",
+            "IDE Features: Use breakpoints and variable inspection",
+            "Incremental Development: Test small parts before building"
+          ],
+          "dos": [
+            "Always initialize variables when declaring them",
+            "Use meaningful variable names",
+            "Include necessary header files",
+            "Use consistent indentation",
+            "Test programs with different inputs",
+            "Use parentheses to clarify operator precedence"
+          ],
+          "donts": [
+            "Leave variables uninitialized",
+            "Use single letters for variable names (except loop counters)",
+            "Forget semicolons at end of statements",
+            "Use = for comparison",
+            "Create infinite loops",
+            "Assume specific type sizes across platforms"
+          ]
+        }
+      },
       "module": "module-01"
     }
   ]
