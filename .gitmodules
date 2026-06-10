@@ -1,0 +1,3 @@
+[submodule "practice/practice01"]
+	path = practice/practice01
+	url = git@github.com:seward-classes/practice01-dcronin05.git

@@ -343,11 +343,11 @@
         "ai_disclaimer": "Your main.cpp must include an AI Disclaimer at the top.",
         "autograder_link": "https://classroom.github.com/a/iSUGhlbp"
       },
-      "status": "unstarted",
+      "status": "in-progress",
       "grade": null,
       "related_resources": [
         "raw/module-01/practice01_instructions.md",
-        "main.cpp"
+        "practice/practice01/main.cpp"
       ]
     },
     {
